@@ -197,76 +197,90 @@ export default function HomePage() {
 
       {/* ─── CATEGORIES ──────────────────────────────────────────── */}
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-        <div className="flex justify-between items-end mb-12 border-b border-gray-200 pb-6">
-          <h3 className="font-[family-name:var(--font-display)] text-[var(--font-size-section)] text-[#0a0a0a] tracking-wide">
-            Curated Categories
-          </h3>
+
+        {/* Section header */}
+        <div className="flex justify-between items-end mb-10">
+          <div>
+            <p className="font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.22em] text-[#999] uppercase mb-2">
+              Browse by style
+            </p>
+            <h3 className="font-[family-name:var(--font-display)] text-[var(--font-size-section)] text-[#0a0a0a] tracking-wide leading-none">
+              Curated Categories
+            </h3>
+          </div>
           <Link
-            className="hidden md:flex items-center gap-2 font-black text-[12px] uppercase tracking-[0.1em] text-[#0a0a0a] hover:opacity-70 transition-opacity group"
+            className="hidden md:inline-flex items-center gap-2 h-10 px-5 border border-[#0a0a0a] text-[#0a0a0a] font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.12em] uppercase transition-all hover:bg-[#0a0a0a] hover:text-white group"
             to="/collections"
           >
-            View All{' '}
+            View All
             <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
               arrow_forward
             </span>
           </Link>
         </div>
 
-        {/* Bento grid — first card is hero-sized, rest fill in */}
+        {/* Desktop bento — tall hero card left, 2×3 right */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gridTemplateRows: 'repeat(2, 280px)',
-            gap: '12px',
-          }}
           className="hidden md:grid"
+          style={{
+            gridTemplateColumns: '2fr 1fr 1fr',
+            gridTemplateRows: 'repeat(2, 320px)',
+            gap: '10px',
+          }}
         >
-          {categories.map((cat, i) => (
+          {categories.slice(0, 7).map((cat, i) => (
             <Link
               key={cat.title}
               to="/collections"
               className="relative group overflow-hidden cursor-pointer"
               style={{
-                gridColumn: i === 0 ? 'span 2' : 'span 1',
+                gridColumn: i === 0 ? '1' : 'auto',
                 gridRow: i === 0 ? 'span 2' : 'span 1',
               }}
             >
               <img
                 alt={cat.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 src={cat.image}
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
-              <div className="absolute bottom-5 left-5">
+              {/* Gradient — stronger at bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent transition-opacity duration-500" />
+              {/* Hover tint */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
                 <h4
-                  className="font-[family-name:var(--font-display)] text-white tracking-wide drop-shadow-lg"
-                  style={{ fontSize: i === 0 ? '3.5rem' : '1.75rem' }}
+                  className="font-[family-name:var(--font-display)] text-white tracking-wide leading-none mb-2"
+                  style={{ fontSize: i === 0 ? '3rem' : '1.5rem' }}
                 >
                   {cat.title}
                 </h4>
-                {cat.subtitle && i === 0 && (
-                  <>
-                    <span className="inline-block h-[2px] w-10 bg-white mb-2 mt-1" />
-                    <p className="text-gray-300 text-xs font-black uppercase tracking-wider">
-                      {cat.subtitle}
-                    </p>
-                  </>
+                {/* Animated underline on hover */}
+                <div className="h-[2px] bg-white w-0 group-hover:w-8 transition-all duration-500 ease-out mb-2" />
+                {i === 0 && cat.subtitle && (
+                  <p className="text-gray-300 text-[11px] font-black uppercase tracking-[0.15em] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    {cat.subtitle}
+                  </p>
+                )}
+                {i !== 0 && (
+                  <p className="text-gray-400 text-[11px] font-black uppercase tracking-[0.12em] opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+                    Shop now →
+                  </p>
                 )}
               </div>
             </Link>
           ))}
         </div>
 
-        {/* Mobile: 2-col uniform grid */}
-        <div className="grid grid-cols-2 gap-3 md:hidden">
-          {categories.map((cat) => (
+        {/* Mobile: 2-col portrait grid */}
+        <div className="grid grid-cols-2 gap-2.5 md:hidden">
+          {categories.map((cat, i) => (
             <Link
               key={cat.title}
               to="/collections"
               className="relative group overflow-hidden cursor-pointer"
-              style={{ aspectRatio: '3/4' }}
+              style={{ aspectRatio: i === 0 ? '1/1' : '3/4', gridColumn: i === 0 ? 'span 2' : 'span 1' }}
             >
               <img
                 alt={cat.title}
@@ -274,9 +288,10 @@ export default function HomePage() {
                 src={cat.image}
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
               <div className="absolute bottom-4 left-4">
-                <h4 className="font-[family-name:var(--font-display)] text-white text-2xl tracking-wide drop-shadow-lg">
+                <h4 className="font-[family-name:var(--font-display)] text-white tracking-wide drop-shadow-lg"
+                  style={{ fontSize: i === 0 ? '2rem' : '1.4rem' }}>
                   {cat.title}
                 </h4>
               </div>
@@ -286,7 +301,7 @@ export default function HomePage() {
 
         <div className="flex justify-center mt-8 md:hidden">
           <Link
-            className="inline-block border-b-2 border-[#0a0a0a] text-[#0a0a0a] font-black uppercase tracking-widest text-sm pb-2 hover:opacity-70 transition-opacity"
+            className="inline-flex items-center gap-2 h-11 px-6 border border-[#0a0a0a] text-[#0a0a0a] font-black text-[11px] uppercase tracking-widest hover:bg-[#0a0a0a] hover:text-white transition-all"
             to="/collections"
           >
             View All Categories
@@ -295,31 +310,45 @@ export default function HomePage() {
       </section>
 
       {/* ─── TRENDING ────────────────────────────────────────────── */}
-      <section
-        className="py-24 md:py-32 border-t border-gray-100"
-        style={{ backgroundColor: '#ffffff' }}
-      >
+      <section className="py-24 md:py-32" style={{ background: '#f8f8f8' }}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-[family-name:var(--font-display)] text-[var(--font-size-section)] text-center text-[#0a0a0a] tracking-wide mb-16">
-            Trending Now
-          </h3>
+
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14 pb-6 border-b border-gray-200">
+            <div>
+              <p className="font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.22em] text-[#999] uppercase mb-2">
+                Most popular
+              </p>
+              <h3 className="font-[family-name:var(--font-display)] text-[var(--font-size-section)] text-[#0a0a0a] tracking-wide leading-none">
+                Trending Now
+              </h3>
+            </div>
+            <Link
+              className="hidden md:inline-flex items-center gap-2 h-10 px-5 border border-[#0a0a0a] text-[#0a0a0a] font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.12em] uppercase transition-all hover:bg-[#0a0a0a] hover:text-white group self-end"
+              to="/collections"
+            >
+              View All
+              <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
+                arrow_forward
+              </span>
+            </Link>
+          </div>
 
           <div
-            className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-x-6 md:gap-y-8 transition-opacity duration-500 ${productsLoading ? 'opacity-60' : 'opacity-100'
+            className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 transition-opacity duration-500 ${productsLoading ? 'opacity-50' : 'opacity-100'
               }`}
           >
             {productsLoading
-              ? Array(8)
-                .fill(0)
-                .map((_, i) => <ProductCardSkeleton key={i} />)
+              ? Array(8).fill(0).map((_, i) => <ProductCardSkeleton key={i} />)
               : trendingProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
           </div>
 
-          <div className="text-center mt-20">
+          {/* Mobile CTA */}
+          <div className="flex justify-center mt-12 md:hidden">
             <Link
-              className="inline-block border-b-2 border-[#0a0a0a] text-[#0a0a0a] font-black uppercase tracking-widest text-sm pb-2 hover:opacity-70 transition-opacity"
+              className="inline-flex items-center gap-2 h-11 px-6 bg-[#0a0a0a] text-white font-black text-[11px] uppercase tracking-widest hover:bg-[#222] transition-colors"
               to="/collections"
             >
               View All Products
