@@ -23,18 +23,12 @@ export default function HomePage() {
         className="relative min-h-[100svh] w-full flex items-end overflow-hidden"
         style={{ background: '#0a0a0a' }}
       >
-        {/* Hero image — black bg blends away, cube floats at full quality */}
-        <div className="absolute inset-0 z-0 flex items-center justify-end pointer-events-none">
+        {/* Pure background image — no effects */}
+        <div className="absolute inset-0 z-0">
           <img
             src={HERO_IMG}
             alt="hero"
-            style={{
-              height: '100%',
-              width: 'auto',
-              maxWidth: '70%',
-              objectFit: 'contain',
-              mixBlendMode: 'lighten',
-            }}
+            className="w-full h-full object-cover"
           />
         </div>
 
@@ -49,11 +43,16 @@ export default function HomePage() {
 
           {/* "YOUR" */}
           <h1
-            className="font-[family-name:var(--font-display)] text-white leading-[0.85] tracking-tight uppercase mb-0"
+            className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
             style={{
               fontSize: 'clamp(80px, 15vw, 180px)',
-              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
-              animationDelay: '0.2s',
+              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
+              background: 'linear-gradient(105deg, #ffffff 30%, #e0e0e0 45%, #ffffff 50%, #e8e8e8 55%, #ffffff 70%)',
+              backgroundSize: '300% auto',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              animationDelay: '0.2s, 2s',
             }}
           >
             Your
@@ -61,35 +60,50 @@ export default function HomePage() {
 
           {/* "WALLS." */}
           <h2
-            className="font-[family-name:var(--font-display)] text-white leading-[0.85] tracking-tight uppercase mb-0"
+            className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
             style={{
               fontSize: 'clamp(80px, 15vw, 180px)',
-              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
-              animationDelay: '0.35s',
+              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
+              background: 'linear-gradient(105deg, #ffffff 30%, #e0e0e0 45%, #ffffff 50%, #e8e8e8 55%, #ffffff 70%)',
+              backgroundSize: '300% auto',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              animationDelay: '0.35s, 2.4s',
             }}
           >
             Walls.
           </h2>
 
-          {/* "YOUR" (rose) */}
+          {/* "YOUR" (rose shimmer) */}
           <h2
-            className="font-[family-name:var(--font-display)] bg-gradient-to-r from-[#aa8187] via-[#caa5a9] to-[#aa8187] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(170,129,135,0.8)] leading-[0.85] tracking-tight uppercase mb-0"
+            className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
             style={{
               fontSize: 'clamp(80px, 15vw, 180px)',
-              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
-              animationDelay: '0.5s',
+              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
+              background: 'linear-gradient(105deg, #aa8187 30%, #d4aaaf 45%, #caa5a9 50%, #c09aa0 55%, #aa8187 70%)',
+              backgroundSize: '300% auto',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              animationDelay: '0.5s, 2.8s',
             }}
           >
             Your
           </h2>
 
-          {/* "STORY." (rose) */}
+          {/* "STORY." (rose shimmer) */}
           <h2
-            className="font-[family-name:var(--font-display)] bg-gradient-to-r from-[#aa8187] via-[#caa5a9] to-[#aa8187] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(170,129,135,0.8)] leading-[0.85] tracking-tight uppercase mb-10"
+            className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-10"
             style={{
               fontSize: 'clamp(80px, 15vw, 180px)',
-              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
-              animationDelay: '0.6s',
+              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
+              background: 'linear-gradient(105deg, #aa8187 30%, #d4aaaf 45%, #caa5a9 50%, #c09aa0 55%, #aa8187 70%)',
+              backgroundSize: '300% auto',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              animationDelay: '0.6s, 3.2s',
             }}
           >
             Story.
