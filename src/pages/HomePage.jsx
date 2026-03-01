@@ -212,12 +212,25 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6 h-auto md:h-[600px]">
-          {categories.map((cat) => (
+        {/* Bento grid — first card is hero-sized, rest fill in */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateRows: 'repeat(2, 280px)',
+            gap: '12px',
+          }}
+          className="hidden md:grid"
+        >
+          {categories.map((cat, i) => (
             <Link
               key={cat.title}
               to="/collections"
-              className={`${cat.cols} ${cat.rows} relative group overflow-hidden cursor-pointer shadow-md`}
+              className="relative group overflow-hidden cursor-pointer"
+              style={{
+                gridColumn: i === 0 ? 'span 2' : 'span 1',
+                gridRow: i === 0 ? 'span 2' : 'span 1',
+              }}
             >
               <img
                 alt={cat.title}
@@ -225,15 +238,18 @@ export default function HomePage() {
                 src={cat.image}
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-              <div className="absolute bottom-6 left-6">
-                <h4 className="font-[family-name:var(--font-display)] text-4xl md:text-6xl text-white tracking-wide drop-shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+              <div className="absolute bottom-5 left-5">
+                <h4
+                  className="font-[family-name:var(--font-display)] text-white tracking-wide drop-shadow-lg"
+                  style={{ fontSize: i === 0 ? '3.5rem' : '1.75rem' }}
+                >
                   {cat.title}
                 </h4>
-                {cat.subtitle && (
+                {cat.subtitle && i === 0 && (
                   <>
-                    <span className="inline-block h-[3px] w-12 bg-white mb-2 shadow-sm" />
-                    <p className="text-gray-200 text-xs md:text-sm font-black uppercase tracking-wider">
+                    <span className="inline-block h-[2px] w-10 bg-white mb-2 mt-1" />
+                    <p className="text-gray-300 text-xs font-black uppercase tracking-wider">
                       {cat.subtitle}
                     </p>
                   </>
@@ -241,6 +257,40 @@ export default function HomePage() {
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* Mobile: 2-col uniform grid */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+          {categories.map((cat) => (
+            <Link
+              key={cat.title}
+              to="/collections"
+              className="relative group overflow-hidden cursor-pointer"
+              style={{ aspectRatio: '3/4' }}
+            >
+              <img
+                alt={cat.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                src={cat.image}
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <h4 className="font-[family-name:var(--font-display)] text-white text-2xl tracking-wide drop-shadow-lg">
+                  {cat.title}
+                </h4>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex justify-center mt-8 md:hidden">
+          <Link
+            className="inline-block border-b-2 border-[#0a0a0a] text-[#0a0a0a] font-black uppercase tracking-widest text-sm pb-2 hover:opacity-70 transition-opacity"
+            to="/collections"
+          >
+            View All Categories
+          </Link>
         </div>
       </section>
 
