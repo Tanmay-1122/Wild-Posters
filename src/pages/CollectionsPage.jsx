@@ -75,9 +75,6 @@ export default function CollectionsPage() {
           </Link>
         ))}
       </div>
-
-
-
     </div>
   );
 }
