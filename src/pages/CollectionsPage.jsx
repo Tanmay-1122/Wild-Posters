@@ -15,14 +15,14 @@ import moviesImg from '../assets/ImagesOfSite/collectionimages/movies.jpg';
 import streetImg from '../assets/ImagesOfSite/collectionimages/street.jpg';
 
 const collections = [
-  { title: 'Anime', emoji: '🎌', count: '142+', image: animeImg, slug: 'anime', cols: 'col-span-2 row-span-2' },
-  { title: 'Cars', emoji: '🚗', count: '85+', image: carsImg, slug: 'cars', cols: 'col-span-1' },
-  { title: 'Music', emoji: '🎵', count: '120+', image: musicImg, slug: 'music', cols: 'col-span-1' },
-  { title: 'Games', emoji: '🎮', count: '95+', image: gamesImg, slug: 'games', cols: 'col-span-1' },
-  { title: 'Aesthetic', emoji: '✨', count: '78+', image: aestheticImg, slug: 'aesthetic', cols: 'col-span-1' },
-  { title: 'Sports', emoji: '⚽', count: '60+', image: sportsImg, slug: 'sports', cols: 'col-span-1' },
-  { title: 'Movies', emoji: '🎬', count: '110+', image: moviesImg, slug: 'movies', cols: 'col-span-1' },
-  { title: 'Street', emoji: '🛹', count: '55+', image: streetImg, slug: 'street', cols: 'col-span-1' },
+  { title: 'Anime', image: animeImg, slug: 'anime', cols: 'col-span-2 row-span-2' },
+  { title: 'Cars', image: carsImg, slug: 'cars', cols: 'col-span-1' },
+  { title: 'Music', image: musicImg, slug: 'music', cols: 'col-span-1' },
+  { title: 'Games', image: gamesImg, slug: 'games', cols: 'col-span-1' },
+  { title: 'Aesthetic', image: aestheticImg, slug: 'aesthetic', cols: 'col-span-1' },
+  { title: 'Sports', image: sportsImg, slug: 'sports', cols: 'col-span-1' },
+  { title: 'Movies', image: moviesImg, slug: 'movies', cols: 'col-span-1' },
+  { title: 'Street', image: streetImg, slug: 'street', cols: 'col-span-1' },
 ];
 
 export default function CollectionsPage() {
