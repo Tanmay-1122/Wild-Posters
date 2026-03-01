@@ -76,19 +76,8 @@ export default function CollectionsPage() {
         ))}
       </div>
 
-      {/* All Posters Section */}
-      <h2 className="font-[family-name:var(--font-display)] text-4xl mb-8">All Posters</h2>
-      <div
-        className={`product-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-x-6 md:gap-y-8 transition-opacity duration-400 ${productsLoading ? 'opacity-60' : 'opacity-100'
-          }`}
-      >
-        {productsLoading
-          ? Array(8).fill(0).map((_, i) => <ProductCardSkeleton key={i} />)
-          : trendingProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))
-        }
-      </div>
+
+
     </div>
   );
 }
