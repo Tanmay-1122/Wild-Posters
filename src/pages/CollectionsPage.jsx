@@ -17,7 +17,10 @@ import streetImg from '../assets/ImagesOfSite/collectionimages/street.jpg';
 import f1Img from '../assets/ImagesOfSite/collectionimages/f1.jpg';
 import cricketImg from '../assets/ImagesOfSite/collectionimages/cricket.jpg';
 import footballImg from '../assets/ImagesOfSite/collectionimages/football.jpg'; // ✅ unique name
-import webseriesImg from '../assets/ImagesOfSite/collectionimages/webseries.jpg'; // ✅ unique name
+import MCUImg from '../assets/ImagesOfSite/collectionimages/MCU.jpg';
+import DCImg from '../assets/ImagesOfSite/collectionimages/DC.jpg';
+import GYMImg from '../assets/ImagesOfSite/collectionimages/GYM.jpg';
+
 
 const collections = [
   { title: 'Anime', image: animeImg, slug: 'anime', cols: 'col-span-2 row-span-2' },
@@ -32,6 +35,9 @@ const collections = [
   { title: 'Cricket', image: cricketImg, slug: 'cricket', cols: 'col-span-1' },
   { title: 'football', image: footballImg, slug: 'football', cols: 'col-span-1' },
   { title: 'webseries', image: webseriesImg, slug: 'webseries', cols: 'col-span-1' },
+  { title: 'MCU', image: MCUImg, slug: 'MCU', cols: 'col-span-1' },
+  { title: 'DC', image: DCImg, slug: 'DC', cols: 'col-span-1' },
+  { title: 'GYM', image: GYMImg, slug: 'GYM', cols: 'col-span-1' },
 
 ];
 
