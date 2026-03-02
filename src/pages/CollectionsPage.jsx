@@ -15,8 +15,8 @@ import moviesImg from '../assets/ImagesOfSite/collectionimages/movies.jpg';
 import streetImg from '../assets/ImagesOfSite/collectionimages/street.jpg';
 import f1Img from '../assets/ImagesOfSite/collectionimages/f1.jpg';
 import cricketImg from '../assets/ImagesOfSite/collectionimages/cricket.jpg';
-import streetImg from '../assets/ImagesOfSite/collectionimages/.jpg';
-import streetImg from '../assets/ImagesOfSite/collectionimages/street.jpg';
+import streetImg from '../assets/ImagesOfSite/collectionimages/football.jpg';
+import streetImg from '../assets/ImagesOfSite/collectionimages/webseries.jpg';
 
 const collections = [
   { title: 'Anime', image: animeImg, slug: 'anime', cols: 'col-span-2 row-span-2' },
@@ -29,8 +29,8 @@ const collections = [
   { title: 'Street', image: streetImg, slug: 'street', cols: 'col-span-1' },
   { title: 'F1', image: f1Img, slug: 'F1', cols: 'col-span-1' },
   { title: 'Cricket', image: cricketImg, slug: 'cricket', cols: 'col-span-1' },
-  { title: 'Street', image: streetImg, slug: 'street', cols: 'col-span-1' },
-  { title: 'Street', image: streetImg, slug: 'street', cols: 'col-span-1' },
+  { title: 'football', image: footballImg, slug: 'football', cols: 'col-span-1' },
+  { title: 'weebseries', image: streetImg, slug: 'webseries', cols: 'col-span-1' },
 
 ];
 
