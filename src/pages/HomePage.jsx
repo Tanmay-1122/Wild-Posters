@@ -2,11 +2,45 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import ProductCardSkeleton from '../components/ProductCardSkeleton';
-import { trendingProducts, categories } from '../data/products';
+import { trendingProducts } from '../data/products';
 import HERO_IMG from '../assets/ImagesOfSite/lily.jpg';
+
+// ✅ Direct local image imports — no dependency on products.js for categories
+import animeImg from '../assets/ImagesOfSite/collectionimages/anime.jpg';
+import carsImg from '../assets/ImagesOfSite/collectionimages/cars.jpg';
+import gamesImg from '../assets/ImagesOfSite/collectionimages/games.jpg';
+import aestheticImg from '../assets/ImagesOfSite/collectionimages/aesthetic.jpg';
+import musicImg from '../assets/ImagesOfSite/collectionimages/music.jpg';
+import sportsImg from '../assets/ImagesOfSite/collectionimages/sports.jpg';
+import moviesImg from '../assets/ImagesOfSite/collectionimages/movies.jpg';
+import streetImg from '../assets/ImagesOfSite/collectionimages/street.jpg';
+import f1Img from '../assets/ImagesOfSite/collectionimages/f1.jpg';
+import cricketImg from '../assets/ImagesOfSite/collectionimages/cricket.jpg';
+import footballImg from '../assets/ImagesOfSite/collectionimages/football.jpg';
+import MCUImg from '../assets/ImagesOfSite/collectionimages/MCU.jpg';
+import DCImg from '../assets/ImagesOfSite/collectionimages/DC.jpg';
+import GYMImg from '../assets/ImagesOfSite/collectionimages/GYM.jpg';
 
 const CUSTOM_IMG =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuBFxt8dhqhAAcZajvPK7Pb6piAUA2A5jAc3s_fVMDx0c4W5zM88zsPPiwiIWp9XSK3AMISIBJFBq2AJiEgoMMMHHiPw6iZPsJy8vpgbo5ObDWxCwMnpCcbRZA0FV77jhR8L1w8CUJts0f98IVYbwQiZQsOiBjUb2ilG49-fj7etQzw5xSvjzm4SQpHW7AxtcY4eJnDT6BcHJag_Bm8y54idabw2dU292S4mTXyCrnyXDNBUx5C769fHFgkByCYpkmCPkpXvb7Ebt7hA';
+
+// ✅ Categories defined directly here with real local images
+const categories = [
+  { title: 'Anime', image: animeImg, subtitle: 'The Classics & New Gen', slug: 'anime' },
+  { title: 'Cars', image: carsImg, subtitle: 'Speed & Style', slug: 'cars' },
+  { title: 'Games', image: gamesImg, subtitle: 'Level Up Your Walls', slug: 'games' },
+  { title: 'Aesthetic', image: aestheticImg, subtitle: 'Minimal & Moody', slug: 'aesthetic' },
+  { title: 'Music', image: musicImg, subtitle: 'Legends & Icons', slug: 'music' },
+  { title: 'Sports', image: sportsImg, subtitle: 'Champions Only', slug: 'sports' },
+  { title: 'Movies', image: moviesImg, subtitle: 'Cinema Classics', slug: 'movies' },
+  { title: 'Street', image: streetImg, subtitle: 'Urban Vibes', slug: 'street' },
+  { title: 'F1', image: f1Img, subtitle: 'Full Throttle', slug: 'F1' },
+  { title: 'Cricket', image: cricketImg, subtitle: 'Play Hard', slug: 'cricket' },
+  { title: 'Football', image: footballImg, subtitle: 'The Beautiful Game', slug: 'football' },
+  { title: 'MCU', image: MCUImg, subtitle: 'Marvel Universe', slug: 'MCU' },
+  { title: 'DC', image: DCImg, subtitle: 'DC Universe', slug: 'DC' },
+  { title: 'GYM', image: GYMImg, subtitle: 'Beast Mode On', slug: 'GYM' },
+];
 
 export default function HomePage() {
   const [productsLoading, setProductsLoading] = useState(true);
@@ -23,16 +57,10 @@ export default function HomePage() {
         className="relative min-h-[100svh] w-full flex items-end overflow-hidden"
         style={{ background: '#0a0a0a' }}
       >
-        {/* Pure background image — no effects */}
         <div className="absolute inset-0 z-0">
-          <img
-            src={HERO_IMG}
-            alt="hero"
-            className="w-full h-full object-cover"
-          />
+          <img src={HERO_IMG} alt="hero" className="w-full h-full object-cover" />
         </div>
 
-        {/* ── Hero content (single div — duplicate removed) ── */}
         <div className="relative z-10 w-full px-6 md:px-12 lg:px-16 pb-20 md:pb-28 max-w-4xl">
           <p
             className="mb-4 font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.22em] text-[#888888] uppercase"
@@ -41,7 +69,6 @@ export default function HomePage() {
             Premium wall posters · India
           </p>
 
-          {/* "YOUR" */}
           <h1
             className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
             style={{
@@ -58,7 +85,6 @@ export default function HomePage() {
             Your
           </h1>
 
-          {/* "WALLS." */}
           <h2
             className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
             style={{
@@ -75,7 +101,6 @@ export default function HomePage() {
             Walls.
           </h2>
 
-          {/* "YOUR" (rose shimmer) */}
           <h2
             className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
             style={{
@@ -92,7 +117,6 @@ export default function HomePage() {
             Your
           </h2>
 
-          {/* "STORY." (rose shimmer) */}
           <h2
             className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-10"
             style={{
@@ -109,7 +133,6 @@ export default function HomePage() {
             Story.
           </h2>
 
-          {/* CTA buttons */}
           <div
             className="flex flex-wrap gap-3 mb-16"
             style={{ animation: 'fadeUp 0.6s ease-out both', animationDelay: '0.75s' }}
@@ -128,7 +151,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Stats */}
           <div
             className="flex gap-8"
             style={{ animation: 'fadeUp 0.6s ease-out both', animationDelay: '0.9s' }}
@@ -148,33 +170,6 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-none"
-          style={{ animation: 'fadeUp 0.6s ease-out both', animationDelay: '1.1s' }}
-        >
-          <span
-            style={{
-              fontSize: 10,
-              fontFamily: 'Barlow, sans-serif',
-              fontWeight: 900,
-              letterSpacing: '0.16em',
-              textTransform: 'uppercase',
-              color: '#555',
-            }}
-          >
-            Scroll
-          </span>
-          <div
-            style={{
-              width: 1,
-              height: 48,
-              background: 'linear-gradient(to bottom, #555, transparent)',
-              animation: 'scrollPulse 1.8s ease-in-out infinite',
-            }}
-          />
         </div>
       </section>
 
@@ -198,7 +193,6 @@ export default function HomePage() {
       {/* ─── CATEGORIES ──────────────────────────────────────────── */}
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
 
-        {/* Section header */}
         <div className="flex justify-between items-end mb-10">
           <div>
             <p className="font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.22em] text-[#999] uppercase mb-2">
@@ -228,10 +222,10 @@ export default function HomePage() {
             gap: '10px',
           }}
         >
-          {categories.slice(0, 7).map((cat, i) => (
+          {categories.slice(0, 6).map((cat, i) => (
             <Link
               key={cat.title}
-              to="/collections"
+              to={`/collections/${cat.slug}`}
               className="relative group overflow-hidden cursor-pointer"
               style={{
                 gridColumn: i === 0 ? '1' : 'auto',
@@ -244,9 +238,7 @@ export default function HomePage() {
                 src={cat.image}
                 loading="lazy"
               />
-              {/* Gradient — stronger at bottom */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent transition-opacity duration-500" />
-              {/* Hover tint */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
 
               <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
@@ -256,7 +248,6 @@ export default function HomePage() {
                 >
                   {cat.title}
                 </h4>
-                {/* Animated underline on hover */}
                 <div className="h-[2px] bg-white w-0 group-hover:w-8 transition-all duration-500 ease-out mb-2" />
                 {i === 0 && cat.subtitle && (
                   <p className="text-gray-300 text-[11px] font-black uppercase tracking-[0.15em] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -278,7 +269,7 @@ export default function HomePage() {
           {categories.map((cat, i) => (
             <Link
               key={cat.title}
-              to="/collections"
+              to={`/collections/${cat.slug}`}
               className="relative group overflow-hidden cursor-pointer"
               style={{ aspectRatio: i === 0 ? '1/1' : '3/4', gridColumn: i === 0 ? 'span 2' : 'span 1' }}
             >
@@ -290,8 +281,10 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
               <div className="absolute bottom-4 left-4">
-                <h4 className="font-[family-name:var(--font-display)] text-white tracking-wide drop-shadow-lg"
-                  style={{ fontSize: i === 0 ? '2rem' : '1.4rem' }}>
+                <h4
+                  className="font-[family-name:var(--font-display)] text-white tracking-wide drop-shadow-lg"
+                  style={{ fontSize: i === 0 ? '2rem' : '1.4rem' }}
+                >
                   {cat.title}
                 </h4>
               </div>
@@ -313,7 +306,6 @@ export default function HomePage() {
       <section className="py-24 md:py-32" style={{ background: '#f8f8f8' }}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14 pb-6 border-b border-gray-200">
             <div>
               <p className="font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.22em] text-[#999] uppercase mb-2">
@@ -345,7 +337,6 @@ export default function HomePage() {
               ))}
           </div>
 
-          {/* Mobile CTA */}
           <div className="flex justify-center mt-12 md:hidden">
             <Link
               className="inline-flex items-center gap-2 h-11 px-6 bg-[#0a0a0a] text-white font-black text-[11px] uppercase tracking-widest hover:bg-[#222] transition-colors"
@@ -426,9 +417,7 @@ export default function HomePage() {
                   <span className="material-symbols-outlined text-3xl">{icon}</span>
                 </div>
                 <div>
-                  <h4 className="font-black uppercase text-base tracking-wider text-[#0a0a0a] mb-1">
-                    {title}
-                  </h4>
+                  <h4 className="font-black uppercase text-base tracking-wider text-[#0a0a0a] mb-1">{title}</h4>
                   <p className="text-sm text-gray-500">{sub}</p>
                 </div>
               </div>
