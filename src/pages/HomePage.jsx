@@ -363,7 +363,7 @@ export default function HomePage() {
                 Custom Orders
               </span>
               <h2 className="font-[family-name:var(--font-display)] text-6xl md:text-8xl text-white leading-[0.9] mb-8">
-                Upload.<br />Print.<br />Wall.
+                Upload.<br />Print.
               </h2>
               <p className="text-[#9a9a9a] text-lg max-w-md mb-10 mx-auto md:mx-0">
                 Got a favourite memory or a design of your own? Turn your digital files into premium
@@ -407,7 +407,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
-              { icon: 'local_shipping', title: 'Fast Dispatch', sub: 'Within 24 hours' },
+              { icon: 'local_shipping', title: 'Fast Dispatch', sub: 'Within 4-7 days' },
               { icon: 'verified', title: 'Premium Print', sub: '300 GSM Matte Paper' },
               { icon: 'payment', title: 'Secure Payment', sub: 'UPI, Cards & Netbanking' },
               { icon: 'package_2', title: 'Safe Packaging', sub: 'Damage-proof tubes' },

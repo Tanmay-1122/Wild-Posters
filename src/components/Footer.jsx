@@ -105,37 +105,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter strip */}
-        <div className="bg-[#111111] py-8 border-t border-b border-[#1f1f1f] mb-0">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <h3 className="font-[family-name:var(--font-display)] text-[28px] text-white mb-2">Join the Wall Gang</h3>
-              <p className="font-[family-name:var(--font-body)] text-[13px] text-[#9a9a9a]">
-                10% off your first order. No spam. Just new drops.
-              </p>
-            </div>
-            <form className="flex flex-col sm:flex-row gap-2 flex-1 md:max-w-md">
-              <input
-                className="flex-1 h-12 px-4 bg-[#1a1a1a] border border-[#2a2a2a] border-r-0 sm:border-r text-white text-[14px] font-[family-name:var(--font-body)] focus:outline-none focus:border-white/50 min-w-0"
-                placeholder="Enter your email"
-                type="email"
-                style={{ fontSize: '16px' }}
-              />
-              <button
-                type="submit"
-                onClick={handlePlaceholderClick}
-                className="h-12 px-8 bg-white text-[#0a0a0a] font-[family-name:var(--font-body)] font-black text-[12px] tracking-[0.1em] uppercase hover:bg-gray-100 transition-colors min-h-[44px]"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-
         {/* Bottom bar */}
         <div className="py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-t border-[#1f1f1f]">
           <p className="font-[family-name:var(--font-body)] text-[12px] text-[#444]">
-            © 2025 Wild Posters. All rights reserved.
+            © 2026 Wild Posters. All rights reserved.
           </p>
           <p className="font-[family-name:var(--font-body)] text-[12px] text-[#444]">
             UPI · Razorpay · Visa · Mastercard · COD
