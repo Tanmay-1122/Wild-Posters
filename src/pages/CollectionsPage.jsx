@@ -5,6 +5,7 @@ import ProductCardSkeleton from '../components/ProductCardSkeleton';
 import { trendingProducts } from '../data/products';
 
 // Import collection images from your local folder
+// ✅ Correct imports
 import animeImg from '../assets/ImagesOfSite/collectionimages/anime.jpg';
 import carsImg from '../assets/ImagesOfSite/collectionimages/cars.jpg';
 import musicImg from '../assets/ImagesOfSite/collectionimages/music.jpg';
@@ -15,8 +16,8 @@ import moviesImg from '../assets/ImagesOfSite/collectionimages/movies.jpg';
 import streetImg from '../assets/ImagesOfSite/collectionimages/street.jpg';
 import f1Img from '../assets/ImagesOfSite/collectionimages/f1.jpg';
 import cricketImg from '../assets/ImagesOfSite/collectionimages/cricket.jpg';
-import streetImg from '../assets/ImagesOfSite/collectionimages/football.jpg';
-import streetImg from '../assets/ImagesOfSite/collectionimages/webseries.jpg';
+import footballImg from '../assets/ImagesOfSite/collectionimages/football.jpg'; // ✅ unique name
+import webseriesImg from '../assets/ImagesOfSite/collectionimages/webseries.jpg'; // ✅ unique name
 
 const collections = [
   { title: 'Anime', image: animeImg, slug: 'anime', cols: 'col-span-2 row-span-2' },
@@ -24,13 +25,13 @@ const collections = [
   { title: 'Music', image: musicImg, slug: 'music', cols: 'col-span-1' },
   { title: 'Games', image: gamesImg, slug: 'games', cols: 'col-span-1' },
   { title: 'Aesthetic', image: aestheticImg, slug: 'aesthetic', cols: 'col-span-1' },
-  { title: 'Sports', image: sportsImg, slug: 'sports', cols: 'col-span-1' },
+  { title: 'Basketball', image: sportsImg, slug: 'Basketball', cols: 'col-span-1' },
   { title: 'Movies', image: moviesImg, slug: 'movies', cols: 'col-span-1' },
   { title: 'Street', image: streetImg, slug: 'street', cols: 'col-span-1' },
   { title: 'F1', image: f1Img, slug: 'F1', cols: 'col-span-1' },
   { title: 'Cricket', image: cricketImg, slug: 'cricket', cols: 'col-span-1' },
   { title: 'football', image: footballImg, slug: 'football', cols: 'col-span-1' },
-  { title: 'weebseries', image: streetImg, slug: 'webseries', cols: 'col-span-1' },
+  { title: 'webseries', image: webseriesImg, slug: 'webseries', cols: 'col-span-1' },
 
 ];
 
