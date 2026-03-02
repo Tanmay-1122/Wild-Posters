@@ -1,0 +1,71 @@
+/* ============================================================
+   CollectionsPage.css
+   Place this file in the same folder as CollectionsPage.jsx
+   ============================================================ */
+
+
+/* ── 1. STAGGERED FADE-IN FROM BOTTOM ─────────────────────── */
+.card-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.card-visible {
+    animation: cardFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ── 2. HOVER: HOVERED CARD GROWS, OTHERS SHRINK (Desktop only) ── */
+/*
+  Uses the modern CSS :has() selector.
+  When ANY .collection-card inside .collections-grid is hovered,
+  every OTHER card scales down to 0.92 and dims slightly.
+  The hovered card itself scales UP to 1.04.
+*/
+@media (hover: hover) and (pointer: fine) {
+
+    /* All cards transition smoothly */
+    .collection-card {
+        transition:
+            transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+            filter 0.4s ease,
+            opacity 0.4s ease;
+        will-change: transform;
+    }
+
+    /* When grid has ANY hovered card → shrink all cards */
+    .collections-grid:has(.collection-card:hover) .collection-card {
+        transform: scale(0.92);
+        filter: brightness(0.7);
+        opacity: 0.8;
+    }
+
+    /* But the actually hovered card grows */
+    .collections-grid:has(.collection-card:hover) .collection-card:hover {
+        transform: scale(1.04);
+        filter: brightness(1.05);
+        opacity: 1;
+        z-index: 10;
+    }
+}
+
+
+/* ── 3. MOBILE: TAP FEEDBACK ───────────────────────────────── */
+@media (hover: none) {
+    .collection-card:active {
+        transform: scale(0.97);
+        transition: transform 0.15s ease;
+    }
+}
