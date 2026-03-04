@@ -54,84 +54,84 @@ export default function HomePage() {
     <>
       {/* ─── HERO ─────────────────────────────────────────────── */}
       <section
-        className="relative min-h-[100svh] w-full flex items-end overflow-hidden"
-        style={{ background: '#0a0a0a' }}
+        className="relative min-h-[100svh] w-full flex items-end overflow-hidden parallax-bg"
+        style={{ background: '#0a0a0a', backgroundImage: `url(${HERO_IMG})`, backgroundPosition: 'center 40%' }}
       >
-        <div className="absolute inset-0 z-0">
-          <img src={HERO_IMG} alt="hero" className="w-full h-full object-cover" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/40 to-black/10 z-0" />
+        <div className="absolute inset-0 bg-black/20 mix-blend-multiply z-0" />
+        <div className="noise-overlay" />
 
-        <div className="relative z-10 w-full px-6 md:px-12 lg:px-16 pb-20 md:pb-28 max-w-4xl">
+        <div className="relative z-10 w-full px-6 md:px-12 lg:px-16 pb-20 md:pb-28 max-w-7xl">
           <p
-            className="mb-4 font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.22em] text-[#888888] uppercase"
-            style={{ animation: 'fadeUp 0.6s ease-out both', animationDelay: '0.1s' }}
+            className="mb-8 font-[family-name:var(--font-body)] font-black text-[11px] tracking-[0.3em] text-[#aaaaaa] uppercase flex items-center gap-4"
+            style={{ animation: 'fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) both', animationDelay: '0.2s' }}
           >
-            Premium wall posters · India
+            <span className="w-12 h-[1px] bg-[#aaaaaa] block" /> Premium wall posters <span className="text-white">· India</span>
           </p>
 
-          <h1
-            className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
-            style={{
-              fontSize: 'clamp(80px, 15vw, 180px)',
-              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
-              background: 'linear-gradient(105deg, #ffffff 30%, #e0e0e0 45%, #ffffff 50%, #e8e8e8 55%, #ffffff 70%)',
-              backgroundSize: '300% auto',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              animationDelay: '0.2s, 2s',
-            }}
-          >
-            Your
-          </h1>
+          <div className="flex flex-col mb-12">
+            <div className="overflow-hidden mb-[-0.05em]">
+              <h1
+                className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase m-0 origin-bottom"
+                style={{
+                  fontSize: 'clamp(80px, 16vw, 220px)',
+                  background: 'linear-gradient(105deg, #ffffff 30%, #e0e0e0 45%, #ffffff 50%, #e8e8e8 55%, #ffffff 70%)',
+                  backgroundSize: '300% auto',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  animation: 'textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
+                  animationDelay: '0.3s, 2s',
+                }}
+              >
+                YOUR
+              </h1>
+            </div>
 
-          <h2
-            className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
-            style={{
-              fontSize: 'clamp(80px, 15vw, 180px)',
-              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
-              background: 'linear-gradient(105deg, #ffffff 30%, #e0e0e0 45%, #ffffff 50%, #e8e8e8 55%, #ffffff 70%)',
-              backgroundSize: '300% auto',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              animationDelay: '0.35s, 2.4s',
-            }}
-          >
-            Walls.
-          </h2>
+            <div className="overflow-hidden mb-[-0.05em]">
+              <h2
+                className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase m-0 origin-bottom"
+                style={{
+                  fontSize: 'clamp(80px, 16vw, 220px)',
+                  WebkitTextStroke: '2px rgba(255, 255, 255, 0.9)',
+                  color: 'transparent',
+                  animation: 'textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both',
+                  animationDelay: '0.45s',
+                }}
+              >
+                WALLS.
+              </h2>
+            </div>
 
-          <h2
-            className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-0"
-            style={{
-              fontSize: 'clamp(80px, 15vw, 180px)',
-              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
-              background: 'linear-gradient(105deg, #aa8187 30%, #d4aaaf 45%, #caa5a9 50%, #c09aa0 55%, #aa8187 70%)',
-              backgroundSize: '300% auto',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              animationDelay: '0.5s, 2.8s',
-            }}
-          >
-            Your
-          </h2>
+            <div className="overflow-hidden mb-[-0.05em]">
+              <h2
+                className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase m-0 origin-bottom"
+                style={{
+                  fontSize: 'clamp(80px, 16vw, 220px)',
+                  background: 'linear-gradient(105deg, #aa8187 30%, #d4aaaf 45%, #caa5a9 50%, #c09aa0 55%, #aa8187 70%)',
+                  backgroundSize: '300% auto',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  animation: 'textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 3s infinite',
+                  animationDelay: '0.6s, 3s',
+                }}
+              >
+                YOUR
+              </h2>
+            </div>
 
-          <h2
-            className="font-[family-name:var(--font-display)] leading-[0.85] tracking-tight uppercase mb-10"
-            style={{
-              fontSize: 'clamp(80px, 15vw, 180px)',
-              animation: 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, shimmer 6s ease-in-out 2s infinite',
-              background: 'linear-gradient(105deg, #aa8187 30%, #d4aaaf 45%, #caa5a9 50%, #c09aa0 55%, #aa8187 70%)',
-              backgroundSize: '300% auto',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              animationDelay: '0.6s, 3.2s',
-            }}
-          >
-            Story.
-          </h2>
+            <div className="overflow-hidden">
+              <h2
+                className="font-[family-name:var(--font-display)] leading-[0.8] tracking-tight uppercase m-0 origin-bottom text-stroke hover:text-[#aa8187] hover:[-webkit-text-stroke:2px_#aa8187] transition-all duration-500"
+                style={{
+                  fontSize: 'clamp(80px, 16vw, 220px)',
+                  animation: 'textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both',
+                  animationDelay: '0.75s',
+                }}
+              >
+                STORY.
+              </h2>
+            </div>
+          </div>
 
           <div
             className="flex flex-wrap gap-3 mb-16"
@@ -346,13 +346,18 @@ export default function HomePage() {
       </section>
 
       {/* ─── CUSTOM ──────────────────────────────────────────────── */}
-      <section className="py-32 relative overflow-hidden" style={{ background: '#0a0a0a' }}>
-        <img
-          alt="Person holding a poster frame"
-          className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay"
-          src={CUSTOM_IMG}
-          loading="lazy"
-        />
+      <section
+        className="py-40 md:py-52 relative overflow-hidden parallax-bg"
+        style={{
+          backgroundColor: '#050505',
+          backgroundImage: `url(${CUSTOM_IMG})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover'
+        }}
+      >
+        <div className="absolute inset-0 bg-[#0a0a0a]/70 mix-blend-multiply z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a] z-0" />
+        <div className="noise-overlay" />
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-16">
             <div className="flex-1 text-center md:text-left">

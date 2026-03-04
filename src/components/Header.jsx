@@ -64,53 +64,61 @@ export default function Header({ onSearchClick }) {
         </div>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
+      {/* Cinematic Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[110] bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-        onClick={() => setIsMenuOpen(false)}
-      />
-
-      {/* Mobile Sidebar Content */}
-      <aside
-        className={`fixed top-0 left-0 bottom-0 w-[80%] max-w-[320px] bg-white z-[120] transition-transform duration-500 md:hidden shadow-2xl flex flex-col ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed inset-0 z-[110] bg-[#050505] transition-all duration-700 md:hidden flex flex-col ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+        style={{ clipPath: isMenuOpen ? 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' : 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
       >
-        <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+        <div className="noise-overlay opacity-20" />
+
+        <div className="w-full p-6 flex justify-between items-center z-20">
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
-            <img src={logo} alt="Wild Posters" className="h-10 w-auto" />
+            <img src={logo} alt="Wild Posters" className="h-10 w-auto filter invert brightness-0" style={{ filter: 'brightness(0) invert(1)' }} />
           </Link>
-          <button onClick={() => setIsMenuOpen(false)} className="p-2 -mr-2">
-            <span className="material-symbols-outlined text-3xl">close</span>
+          <button onClick={() => setIsMenuOpen(false)} className="p-2 -mr-2 text-white hover:text-gray-400 rotate-90 hover:rotate-180 transition-all duration-500">
+            <span className="material-symbols-outlined text-4xl">close</span>
           </button>
         </div>
 
-        <nav className="flex-grow p-8 flex flex-col gap-8">
-          {['Shop', 'Collections', 'Custom', 'Bulk'].map((link) => (
-            <Link
-              key={link}
-              to={link === 'Shop' ? '/' : `/${link.toLowerCase()}`}
-              onClick={() => setIsMenuOpen(false)}
-              className="font-[family-name:var(--font-display)] text-5xl uppercase tracking-tighter hover:text-gray-500 transition-colors"
-            >
-              {link}
-            </Link>
+        <nav className="relative z-20 flex-grow w-full flex flex-col justify-center px-8 gap-4">
+          {['Shop', 'Collections', 'Custom', 'Bulk'].map((link, index) => (
+            <div key={link} className="overflow-hidden">
+              <Link
+                to={link === 'Shop' ? '/' : `/${link.toLowerCase()}`}
+                onClick={() => setIsMenuOpen(false)}
+                className="block font-[family-name:var(--font-display)] text-[12vw] leading-none uppercase tracking-wide text-stroke hover:text-white transition-all duration-300 transform"
+                style={{
+                  animation: isMenuOpen ? `textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.2 + index * 0.1}s both` : 'none',
+                }}
+              >
+                {link}
+              </Link>
+            </div>
           ))}
-          <button
-            onClick={() => { setIsMenuOpen(false); onSearchClick(); }}
-            className="font-[family-name:var(--font-display)] text-5xl uppercase tracking-tighter text-left hover:text-gray-500 transition-colors"
-          >
-            Search
-          </button>
+          <div className="overflow-hidden mt-4">
+            <button
+              onClick={() => { setIsMenuOpen(false); onSearchClick(); }}
+              className="block font-[family-name:var(--font-display)] text-[12vw] leading-none uppercase tracking-wide text-stroke hover:text-white transition-all duration-300 text-left"
+              style={{
+                animation: isMenuOpen ? `textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.2 + 4 * 0.1}s both` : 'none',
+              }}
+            >
+              SEARCH
+            </button>
+          </div>
         </nav>
 
-        <div className="p-10 border-t border-gray-100 mt-auto bg-gray-50">
-          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-6">Connect with us</p>
-          <div className="flex gap-6 mb-8 uppercase text-xs font-bold tracking-widest">
-            <a href="#" className="hover:text-gray-500 transition-colors">Instagram</a>
-            <a href="#" className="hover:text-gray-500 transition-colors">X</a>
+        <div className="p-8 z-20 flex justify-between items-end border-t border-white/10 mt-auto">
+          <div className="flex flex-col gap-4 uppercase text-xs font-bold tracking-widest text-gray-500">
+            <a href="#" className="hover:text-white transition-colors">Instagram</a>
+            <a href="#" className="hover:text-white transition-colors">X</a>
           </div>
-          <p className="text-[10px] text-gray-400 uppercase tracking-widest">Premium Wall Posters · India</p>
+          <p className="text-[10px] text-gray-600 uppercase tracking-widest text-right max-w-[120px]">
+            Premium Wall Posters<br /><span className="text-white mt-1 block">India</span>
+          </p>
         </div>
-      </aside>
+      </div>
     </header>
   );
 }
