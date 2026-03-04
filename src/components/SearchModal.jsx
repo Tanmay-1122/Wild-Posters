@@ -1,23 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { trendingProducts } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 
 export default function SearchModal({ isOpen, onClose }) {
+    const { products } = useProducts();
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (query.trim().length > 1) {
-            const filtered = trendingProducts.filter((p) =>
+        if (query.trim().length > 1 && products) {
+            const filtered = (products || []).filter((p) =>
                 p.title.toLowerCase().includes(query.toLowerCase()) ||
-                p.category.toLowerCase().includes(query.toLowerCase())
+                (p.category || '').toLowerCase().includes(query.toLowerCase())
             );
             setResults(filtered);
         } else {
             setResults([]);
         }
-    }, [query]);
+    }, [query, products]);
 
     if (!isOpen) return null;
 

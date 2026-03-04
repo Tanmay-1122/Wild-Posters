@@ -24,7 +24,7 @@ export default function CartPage() {
           {cart.map((item, idx) => (
             <div key={`${item.id}-${item.size}-${item.paper}`} className="flex gap-4 md:gap-6 border-b border-[#f8f7f6] pb-8">
               <div className="w-24 h-32 md:w-32 md:h-44 bg-[#f8f7f6] rounded overflow-hidden flex-shrink-0">
-                <img src={item.images?.[0] || item.image} alt={item.title} className="w-full h-full object-cover" />
+                <img src={item.primaryImage || item.image} alt={item.title} className="w-full h-full object-cover" />
               </div>
               <div className="flex-grow flex flex-col">
                 <div className="flex justify-between items-start mb-1">

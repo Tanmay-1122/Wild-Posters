@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useShop } from '../context/ShopContext';
-import { trendingProducts } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 
 /* ─── inject global styles once ─────────────────────────────── */
 const STYLES = `
@@ -498,9 +498,11 @@ export default function CategoryPage() {
     const { category } = useParams();
     const { cart, wishlist, addToCart, toggleWishlist, updateQuantity, removeFromCart } = useShop();
 
+    // ── live data from Medusa ──
+    const { products, loading } = useProducts();
+
     const [sort, setSort] = useState('featured');
     const [avail, setAvail] = useState('all');
-    const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(null);
     const [cartOpen, setCartOpen] = useState(false);
     const [wishlistSet, setWishlistSet] = useState(new Set());
@@ -513,13 +515,6 @@ export default function CategoryPage() {
             setWishlistSet(new Set(wishlist.map(x => x.id ?? x)));
         }
     }, [wishlist]);
-
-    /* Reset loading when category changes */
-    useEffect(() => {
-        setLoading(true);
-        const t = setTimeout(() => setLoading(false), 400);
-        return () => clearTimeout(t);
-    }, [category]);
 
     /* Scroll to top on category change */
     useEffect(() => {
@@ -548,9 +543,9 @@ export default function CategoryPage() {
         showToast(isWished ? 'Removed from wishlist' : `${product.title} wishlisted`, isWished ? 'default' : 'ok');
     }, [toggleWishlist, wishlistSet]);
 
-    /* Filter products for this category */
-    const categoryProducts = trendingProducts.filter(p =>
-        (p.category || p.collection || '').toLowerCase() === (category || '').toLowerCase()
+    /* Filter products for this category from live Medusa data */
+    const categoryProducts = products.filter(p =>
+        (p.categorySlug || '').toLowerCase() === (category || '').toLowerCase()
     );
 
     const filtered = categoryProducts
@@ -566,7 +561,6 @@ export default function CategoryPage() {
 
     const cartCount = cart.reduce((s, i) => s + (i.quantity || 1), 0);
 
-    /* Pretty category name */
     const categoryName = category
         ? category.charAt(0).toUpperCase() + category.slice(1)
         : 'Category';
@@ -586,7 +580,6 @@ export default function CategoryPage() {
                 }} />
 
                 <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative' }}>
-                    {/* Breadcrumb */}
                     <div className="wp-anim-fade-in" style={{ marginBottom: 14, display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' }}>
                         <Link to="/collections" style={{ color: 'rgba(255,255,255,.5)', textDecoration: 'none', transition: 'color .15s' }}
                             onMouseEnter={e => e.currentTarget.style.color = '#fff'}

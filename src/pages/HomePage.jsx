@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import ProductCardSkeleton from '../components/ProductCardSkeleton';
-import { trendingProducts } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 import HERO_IMG from '../assets/ImagesOfSite/lily.jpg';
 
 // ✅ Direct local image imports — no dependency on products.js for categories
@@ -34,20 +34,20 @@ const categories = [
   { title: 'Sports', image: sportsImg, subtitle: 'Champions Only', slug: 'sports' },
   { title: 'Movies', image: moviesImg, subtitle: 'Cinema Classics', slug: 'movies' },
   { title: 'Street', image: streetImg, subtitle: 'Urban Vibes', slug: 'street' },
-  { title: 'F1', image: f1Img, subtitle: 'Full Throttle', slug: 'F1' },
+  { title: 'F1', image: f1Img, subtitle: 'Full Throttle', slug: 'f1' },
   { title: 'Cricket', image: cricketImg, subtitle: 'Play Hard', slug: 'cricket' },
   { title: 'Football', image: footballImg, subtitle: 'The Beautiful Game', slug: 'football' },
-  { title: 'MCU', image: MCUImg, subtitle: 'Marvel Universe', slug: 'MCU' },
-  { title: 'DC', image: DCImg, subtitle: 'DC Universe', slug: 'DC' },
-  { title: 'GYM', image: GYMImg, subtitle: 'Beast Mode On', slug: 'GYM' },
+  { title: 'MCU', image: MCUImg, subtitle: 'Marvel Universe', slug: 'mcu' },
+  { title: 'DC', image: DCImg, subtitle: 'DC Universe', slug: 'dc' },
+  { title: 'GYM', image: GYMImg, subtitle: 'Beast Mode On', slug: 'gym' },
 ];
 
 export default function HomePage() {
-  const [productsLoading, setProductsLoading] = useState(true);
+  // ── live data from Medusa ──
+  const { products, loading } = useProducts();
 
   useEffect(() => {
-    const t = setTimeout(() => setProductsLoading(false), 600);
-    return () => clearTimeout(t);
+    // If you still want the scroll visibility effect
   }, []);
 
   return (
@@ -326,13 +326,10 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div
-            className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 transition-opacity duration-500 ${productsLoading ? 'opacity-50' : 'opacity-100'
-              }`}
-          >
-            {productsLoading
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
+            {loading
               ? Array(8).fill(0).map((_, i) => <ProductCardSkeleton key={i} />)
-              : trendingProducts.map((product) => (
+              : (products || []).slice(0, 8).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
           </div>
@@ -362,6 +359,7 @@ export default function HomePage() {
               <span className="text-white font-black uppercase tracking-widest text-sm mb-4 block">
                 Custom Orders
               </span>
+
               <h2 className="font-[family-name:var(--font-display)] text-6xl md:text-8xl text-white leading-[0.9] mb-8">
                 Upload.<br />Print.
               </h2>

@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
-import ProductCardSkeleton from '../components/ProductCardSkeleton';
-import { trendingProducts } from '../data/products';
 import './CollectionsPage.css';
 
 import animeImg from '../assets/ImagesOfSite/collectionimages/anime.jpg';
@@ -26,15 +23,15 @@ const collections = [
   { title: 'Music', image: musicImg, slug: 'music' },
   { title: 'Games', image: gamesImg, slug: 'games' },
   { title: 'Aesthetic', image: aestheticImg, slug: 'aesthetic' },
-  { title: 'Basketball', image: sportsImg, slug: 'Basketball' },
+  { title: 'Basketball', image: sportsImg, slug: 'basketball' },
   { title: 'Movies', image: moviesImg, slug: 'movies' },
   { title: 'Street', image: streetImg, slug: 'street' },
-  { title: 'F1', image: f1Img, slug: 'F1' },
+  { title: 'F1', image: f1Img, slug: 'f1' },
   { title: 'Cricket', image: cricketImg, slug: 'cricket' },
   { title: 'Football', image: footballImg, slug: 'football' },
-  { title: 'MCU', image: MCUImg, slug: 'MCU' },
-  { title: 'DC', image: DCImg, slug: 'DC' },
-  { title: 'GYM', image: GYMImg, slug: 'GYM' },
+  { title: 'MCU', image: MCUImg, slug: 'mcu' },
+  { title: 'DC', image: DCImg, slug: 'dc' },
+  { title: 'GYM', image: GYMImg, slug: 'gym' },
 ];
 
 const masonryStyles = `
@@ -65,20 +62,17 @@ const masonryStyles = `
 `;
 
 export default function CollectionsPage() {
-  const [productsLoading, setProductsLoading] = useState(true);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setProductsLoading(false), 500);
     const v = setTimeout(() => setVisible(true), 50);
-    return () => { clearTimeout(t); clearTimeout(v); };
+    return () => clearTimeout(v);
   }, []);
 
   return (
     <div className="max-w-[1440px] mx-auto px-6 lg:px-10 py-10">
       <style>{masonryStyles}</style>
 
-      {/* Header */}
       <div className="flex flex-col gap-2 mb-10 border-b border-gray-200 dark:border-gray-800 pb-8">
         <h1 className="text-[var(--color-accent-black)] dark:text-white text-[56px] font-[family-name:var(--font-display)] leading-none">
           COLLECTIONS
@@ -88,7 +82,6 @@ export default function CollectionsPage() {
         </p>
       </div>
 
-      {/* Masonry Collection Grid — images render at their natural aspect ratio, zero cropping */}
       <div className="masonry-grid mb-20">
         {collections.map((c, i) => (
           <Link
@@ -97,18 +90,13 @@ export default function CollectionsPage() {
             className={`masonry-card collection-card group relative overflow-hidden rounded-lg ${visible ? 'card-visible' : ''}`}
             style={{ animationDelay: `${i * 70}ms` }}
           >
-            {/* Image at 100% width, auto height — fully preserves aspect ratio */}
             <img
               src={c.image}
               alt={c.title}
               className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-105"
               draggable={false}
             />
-
-            {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none" />
-
-            {/* Title + Shop Now CTA */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center pointer-events-none">
               <h3 className="text-white text-2xl md:text-4xl font-[family-name:var(--font-display)] tracking-wide drop-shadow-lg transition-transform duration-300 group-hover:scale-110">
                 {c.title}
@@ -120,7 +108,6 @@ export default function CollectionsPage() {
           </Link>
         ))}
       </div>
-
     </div>
   );
 }
