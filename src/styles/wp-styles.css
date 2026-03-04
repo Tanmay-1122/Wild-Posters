@@ -1,0 +1,255 @@
+/* ═══════════════════════════════════════════════════════════════
+   Wild Posters — shared styles for product pages
+   (CategoryPage, testt / "Shop All" page)
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&display=swap');
+
+.wp-page * { box-sizing: border-box; }
+
+.wp-page {
+  font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* transparent so the global .main-content dotted background shows through */
+  background: transparent;
+  min-height: 100vh;
+}
+
+/* ── keyframes ──────────────────────────────────────────── */
+@keyframes wp-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes wp-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes wp-slide-right {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes wp-card-in {
+  from { opacity: 0; transform: translateY(36px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes wp-shimmer {
+  100% { transform: translateX(100%); }
+}
+@keyframes wp-toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@keyframes wp-modal-in {
+  from { opacity: 0; transform: scale(.96) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes wp-drawer-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes wp-count-pop {
+  0%  { transform: scale(1); }
+  50% { transform: scale(1.45); }
+  100%{ transform: scale(1); }
+}
+
+.wp-anim-fade-up    { animation: wp-fade-up .55s cubic-bezier(.22,.68,0,1.2) both; }
+.wp-anim-fade-in    { animation: wp-fade-in .4s ease both; }
+.wp-anim-slide-r    { animation: wp-slide-right .45s cubic-bezier(.22,.68,0,1.2) both; }
+.wp-anim-card       { animation: wp-card-in .55s cubic-bezier(.22,.68,0,1.2) both; }
+.wp-anim-modal      { animation: wp-modal-in .3s cubic-bezier(.22,.68,0,1.2) both; }
+.wp-anim-drawer     { animation: wp-drawer-in .32s cubic-bezier(.22,.68,0,1.2) both; }
+.wp-anim-count-pop  { animation: wp-count-pop .3s ease; }
+
+/* ── skeleton ─────────────────────────────────────────── */
+.wp-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e2e2de;
+}
+.wp-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+  animation: wp-shimmer 1.4s infinite;
+}
+
+/* ── card ─────────────────────────────────────────────── */
+.wp-card {
+  background: #fff;
+  border: 1px solid #e0e0dc;
+  transition: border-color .2s, box-shadow .25s;
+  position: relative;
+  overflow: hidden;
+}
+.wp-card:hover {
+  border-color: #aaa;
+  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+}
+.wp-card .wp-card-img {
+  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.wp-card:hover .wp-card-img { transform: scale(1.06); }
+
+.wp-card .wp-card-overlay {
+  opacity: 0;
+  transition: opacity .22s;
+}
+.wp-card:hover .wp-card-overlay { opacity: 1; }
+
+/* ── wishlist button ──────────────────────────────────── */
+.wp-wish-btn {
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(0,0,0,.10);
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, transform .15s;
+  cursor: pointer;
+}
+.wp-wish-btn:hover { background: #fff; transform: scale(1.08); }
+.wp-wish-btn.active svg path { fill: #e11d48; stroke: #e11d48; }
+
+/* ── chip ─────────────────────────────────────────────── */
+.wp-chip {
+  border: 1.5px solid #c8c8c4;
+  background: transparent;
+  color: #6b6b6b;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s, transform .1s;
+}
+.wp-chip:hover { border-color: #0a0a0a; color: #0a0a0a; transform: translateY(-1px); }
+.wp-chip.active { background: #0a0a0a; border-color: #0a0a0a; color: #fff; }
+
+/* ── buttons ──────────────────────────────────────────── */
+.wp-btn {
+  border: 1.5px solid #d0d0cc;
+  background: transparent;
+  color: #0a0a0a;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .1s;
+}
+.wp-btn:hover { border-color: #0a0a0a; background: #f0f0ec; }
+.wp-btn:active { transform: translateY(1px); }
+
+.wp-btn-primary {
+  border: 1.5px solid #0a0a0a;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.wp-btn-primary:hover { background: #2a2a2a; }
+.wp-btn-primary:active { transform: translateY(1px); }
+.wp-btn-primary:disabled { background: #bbb; border-color: #bbb; cursor: not-allowed; }
+
+/* ── badges ───────────────────────────────────────────── */
+.wp-badge-in  { background:#e8f5ee; color:#1a7a45; border:1px solid rgba(26,122,69,.2); font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; }
+.wp-badge-out { background:#fdf0ee; color:#b83c30; border:1px solid rgba(184,60,48,.2); font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; }
+.wp-badge-off { background:#0a0a0a; color:#fff; font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; }
+
+/* ── tag pill ─────────────────────────────────────────── */
+.wp-tag { border:1px solid #d0d0cc; color:#888; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; background:transparent; }
+
+/* ── select ───────────────────────────────────────────── */
+.wp-select {
+  border: 1.5px solid #d0d0cc;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23666' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") right 12px center no-repeat;
+  color: #0a0a0a;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 9px 36px 9px 12px;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color .15s;
+}
+.wp-select:focus { border-color: #0a0a0a; }
+
+/* ── modal ────────────────────────────────────────────── */
+.wp-modal-img-wrap {
+  background: #f0f0ec;
+  overflow: hidden;
+}
+.wp-modal-img-wrap img {
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+.wp-modal-img-wrap:hover img { transform: scale(1.04); }
+
+/* ── toast ────────────────────────────────────────────── */
+.wp-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  animation: wp-toast-in .3s cubic-bezier(.22,.68,0,1.2) both;
+  pointer-events: none;
+  box-shadow: 0 4px 24px rgba(0,0,0,.25);
+}
+.wp-toast.ok    { background: #1a7a45; }
+.wp-toast.error { background: #b83c30; }
+
+/* ── grid gap trick ───────────────────────────────────── */
+.wp-grid {
+  display: grid;
+  gap: 1px;
+  background: #e0e0dc;
+}
+
+/* ── qty input ────────────────────────────────────────── */
+.wp-qty-input {
+  width: 40px;
+  text-align: center;
+  border: 1.5px solid #d0d0cc;
+  background: #fff;
+  color: #0a0a0a;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px;
+  outline: none;
+}
+.wp-qty-input:focus { border-color: #0a0a0a; }
+
+/* ── reduce motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .wp-page *,
+  .wp-page *::before,
+  .wp-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
