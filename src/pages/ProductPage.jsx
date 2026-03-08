@@ -52,16 +52,32 @@ export default function ProductPage() {
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-12">
-          <div className="lg:col-span-7 flex flex-col gap-4 relative px-4 md:px-0">
-            <div className="hidden md:block aspect-[4/5] w-full bg-[#f8f7f6] rounded-lg overflow-hidden relative group">
-              <img alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={images[selectedImage]} />
+          <div className="lg:col-span-7 flex flex-col gap-4 relative md:px-0">
+            {/* Main Image Container */}
+            <div className="aspect-[4/5] w-full bg-[#f8f7f6] md:rounded-lg overflow-hidden relative group">
+              <img
+                alt={product.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src={images[selectedImage]}
+              />
               {product.badge && (
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-sm">{product.badge}</div>
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-sm">
+                  {product.badge}
+                </div>
               )}
             </div>
-            <div className="hidden md:grid grid-cols-4 gap-4">
+
+            {/* Thumbnail Grid - Visible on all screens, scrolls horizontally on small ones if many */}
+            <div className="grid grid-cols-4 gap-4 px-4 md:px-0 mb-4 md:mb-0">
               {images.map((img, i) => (
-                <button key={i} onClick={() => setSelectedImage(i)} className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${selectedImage === i ? 'border-[#161513] ring-1 ring-[#161513] opacity-100' : 'border-transparent hover:border-[#80786b] opacity-60 hover:opacity-100'}`}>
+                <button
+                  key={i}
+                  onClick={() => setSelectedImage(i)}
+                  className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${selectedImage === i
+                      ? 'border-[#161513] ring-1 ring-[#161513] opacity-100'
+                      : 'border-transparent hover:border-[#80786b] opacity-60 hover:opacity-100'
+                    }`}
+                >
                   <img alt="" className="w-full h-full object-cover" src={img} />
                 </button>
               ))}

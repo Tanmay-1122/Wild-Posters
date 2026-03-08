@@ -204,19 +204,21 @@ function ProductCard({ product: p, idx, wishlisted, onAddToCart, onWishlist, onQ
             style={{ animationDelay: `${Math.min(idx * 60, 480)}ms` }}
         >
             <div style={{ position: 'relative', overflow: 'hidden', background: '#f0f0ec', aspectRatio: '4/5' }}>
-                <img
-                    src={p.primaryImage || p.image}
-                    alt={p.title}
-                    className="wp-card-img"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                    loading="lazy"
-                />
+                <Link to={`/product/${p.slug || p.id}`}>
+                    <img
+                        src={p.primaryImage || p.image}
+                        alt={p.title}
+                        className="wp-card-img"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        loading="lazy"
+                    />
+                </Link>
 
                 <div className="wp-card-overlay" style={{
                     position: 'absolute', inset: 0, background: 'rgba(0,0,0,.38)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2
                 }}>
-                    <button onClick={() => onQuickView(p)} className="wp-btn-primary" style={{ padding: '10px 22px' }}>
+                    <button onClick={(e) => { e.preventDefault(); onQuickView(p); }} className="wp-btn-primary" style={{ padding: '10px 22px' }}>
                         Quick View
                     </button>
                 </div>
@@ -245,17 +247,19 @@ function ProductCard({ product: p, idx, wishlisted, onAddToCart, onWishlist, onQ
             </div>
 
             <div style={{ padding: '14px 14px 16px', background: '#fff' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
-                    <h3 style={{ margin: 0, fontSize: 13, fontWeight: 800, letterSpacing: '-.01em', lineHeight: 1.2, color: '#0a0a0a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
-                        {p.title}
-                    </h3>
-                    <div style={{ flexShrink: 0, textAlign: 'right' }}>
-                        <span style={{ fontSize: 15, fontWeight: 900, color: '#0a0a0a' }}>{money(p.price)}</span>
-                        {hasDiscount && (
-                            <div style={{ fontSize: 11, color: '#aaa', textDecoration: 'line-through', lineHeight: 1 }}>{money(p.originalPrice)}</div>
-                        )}
+                <Link to={`/product/${p.slug || p.id}`} style={{ textDecoration: 'none' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
+                        <h3 style={{ margin: 0, fontSize: 13, fontWeight: 800, letterSpacing: '-.01em', lineHeight: 1.2, color: '#0a0a0a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
+                            {p.title}
+                        </h3>
+                        <div style={{ flexShrink: 0, textAlign: 'right' }}>
+                            <span style={{ fontSize: 15, fontWeight: 900, color: '#0a0a0a' }}>{money(p.price)}</span>
+                            {hasDiscount && (
+                                <div style={{ fontSize: 11, color: '#aaa', textDecoration: 'line-through', lineHeight: 1 }}>{money(p.originalPrice)}</div>
+                            )}
+                        </div>
                     </div>
-                </div>
+                </Link>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
                     <span className="wp-tag">{p.category || p.collection}</span>

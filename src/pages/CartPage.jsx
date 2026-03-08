@@ -23,12 +23,14 @@ export default function CartPage() {
         <div className="space-y-8">
           {cart.map((item, idx) => (
             <div key={`${item.id}-${item.size}-${item.paper}`} className="flex gap-4 md:gap-6 border-b border-[#f8f7f6] pb-8">
-              <div className="w-24 h-32 md:w-32 md:h-44 bg-[#f8f7f6] rounded overflow-hidden flex-shrink-0">
-                <img src={item.primaryImage || item.image} alt={item.title} className="w-full h-full object-cover" />
-              </div>
+              <Link to={`/product/${item.slug || item.id}`} className="w-24 h-32 md:w-32 md:h-44 bg-[#f8f7f6] rounded overflow-hidden flex-shrink-0">
+                <img src={item.primaryImage || item.image} alt={item.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </Link>
               <div className="flex-grow flex flex-col">
                 <div className="flex justify-between items-start mb-1">
-                  <h3 className="font-bold text-sm md:text-lg uppercase tracking-wide truncate max-w-[150px] md:max-w-none">{item.title}</h3>
+                  <Link to={`/product/${item.slug || item.id}`} className="hover:text-gray-600 transition-colors">
+                    <h3 className="font-bold text-sm md:text-lg uppercase tracking-wide truncate max-w-[150px] md:max-w-none">{item.title}</h3>
+                  </Link>
                   <button onClick={() => removeFromCart(item.id, item.size, item.paper)} className="material-symbols-outlined text-[#80786b] hover:text-red-500 text-xl">close</button>
                 </div>
                 <p className="text-xs text-[#80786b] uppercase mb-1">{item.category}</p>

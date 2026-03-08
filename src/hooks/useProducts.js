@@ -53,19 +53,36 @@ export function useProducts(filters = {}) {
     return { products, loading, error }
 }
 
-export function useProductBySlug(slug) {
+export function useProductBySlug(slugOrId) {
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        if (!slug) return
+        if (!slugOrId) return
         async function fetchProduct() {
             try {
-                const { products } = await medusa.store.product.list({
+                setLoading(true)
+
+                // Try fetching by handle first (common case)
+                let { products } = await medusa.store.product.list({
                     region_id: INDIA_REGION_ID,
-                    handle: slug,
+                    handle: slugOrId,
                     fields: "+metadata,+categories.name,+categories.handle",
                 })
+
+                // If not found by handle, try fetching by ID directly
+                if (!products.length && slugOrId.startsWith("prod_")) {
+                    try {
+                        const { product: p } = await medusa.store.product.retrieve(slugOrId, {
+                            region_id: INDIA_REGION_ID,
+                            fields: "+metadata,+categories.name,+categories.handle",
+                        })
+                        if (p) products = [p]
+                    } catch (e) {
+                        // ID fetch failed, maybe it wasn't an ID
+                    }
+                }
+
                 setProduct(products[0] ? mapMedusaProduct(products[0]) : null)
             } catch (err) {
                 console.error("Failed to fetch product:", err)
@@ -74,7 +91,7 @@ export function useProductBySlug(slug) {
             }
         }
         fetchProduct()
-    }, [slug])
+    }, [slugOrId])
 
     return { product, loading }
 }
